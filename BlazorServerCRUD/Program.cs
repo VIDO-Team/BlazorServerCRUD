@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
-builder.Services.AddDbContext<DataContext>(options => options.UseInMemoryDatabase("videogamedb"));
+builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("FQAManagementContextConnection")));
 builder.Services.AddScoped<IGameService, GameService>();
 
 var app = builder.Build();
